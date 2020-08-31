@@ -12,7 +12,6 @@ void setup() {
   pinMode(trigPin, OUTPUT); // Sets the trigPin as an OUTPUT
   pinMode(echoPin, INPUT); // Sets the echoPin as an INPUT
   pinMode(led, OUTPUT);
-  Serial.begin(9600); // // Serial Communication is starting with 9600 of baudrate speed
   int i;
   for (i = 0; i < 3 ; i++) {
     digitalWrite(led, HIGH);
@@ -35,9 +34,17 @@ void loop() {
   // Calculating the distance
   distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
   // Displays the distance on the Serial Monitor
+  if (distance <= 10) {
+    Alarm();
+  } else {
+    delay(500);
+  }
+}
 
-  Serial.print(distance);
-  Serial.println(" cm");
-
-delay(500);
+void Alarm() {
+  int i;
+  for (i = 0; i < 25; i++) {
+    tone(11, 800, 100);
+    delay(200);
+  }
 }

@@ -34,38 +34,18 @@ void loop() {
   // Calculating the distance
   distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
   // Displays the distance on the Serial Monitor
-  if (distance < 150) {
+  if (distance < 10) {
     AlarmHIGH();
   } else {
-    
-  }
-
-  while(distance >=150){
-    tone(11,800,80)
     delay(100);
   }
+
 }
 
 void AlarmHIGH() {
   int i;
   for (i = 0; i < 25; i++) {
     tone(11, 800, 100);
-    delay(150);
-  }
-}
-
-void AlarmMID() {
-  int i;
-  for (i = 0; i < 25; i++) {
-    tone(11, 800, 100);
-    delay(150);
-  }
-}
-
-void AlarmLOW() {
-  int i;
-  for (i = 0; i < 25; i++) {
-    tone(11, 800, 100);
-    delay(150);
+    delay(200);
   }
 }

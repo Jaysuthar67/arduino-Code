@@ -21,49 +21,63 @@ void setup() {
 }
 void loop() {
 
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
+  while (distance < 150 && distance > 100) {
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
 
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
 
-  duration = pulseIn(echoPin, HIGH);
+    duration = pulseIn(echoPin, HIGH);
 
-  distance = duration * 0.034 / 2;
-
-  if (distance < 150 && distance > 100) {
-    AlarmLOW();
-  } else if (distance < 100 && distance > 30) {
-
-  } else if (distance < 30) {
-
-  } else {
-    tone(11, 800, 10)
-    delay(100);
+    distance = duration * 0.034 / 2;
+    tone(11, 800, 100);
+    delay(300);
   }
-}
 
-void AlarmHIGH() {
-  int i;
-  for (i = 0; i < 25; i++) {
+  while (distance < 100 && distance > 30) {
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
+
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+
+    duration = pulseIn(echoPin, HIGH);
+
+    distance = duration * 0.034 / 2;
     tone(11, 800, 100);
     delay(150);
   }
-}
 
-void AlarmMID() {
-  int i;
-  for (i = 0; i < 25; i++) {
-    tone(11, 800, 100);
-    delay(150);
+  while (distance < 30) {
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
+
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+
+    duration = pulseIn(echoPin, HIGH);
+
+    distance = duration * 0.034 / 2;
+    tone(11, 800, 80);
+    delay(110);
   }
-}
 
-void AlarmLOW() {
-  int i;
-  for (i = 0; i < 25; i++) {
-    tone(11, 800, 100);
+  while (distance > 150) {
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
+
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+
+    duration = pulseIn(echoPin, HIGH);
+
+    distance = duration * 0.034 / 2;
+    tone(11, 800, 10);
     delay(500);
   }
 }
